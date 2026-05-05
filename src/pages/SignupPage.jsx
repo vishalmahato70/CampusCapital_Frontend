@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api/v1";
+import BASE_URL from "../utils/api";
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export default function SignupPage() {
     }
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/auth/signup`, {
+      const res = await fetch(`${BASE_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
