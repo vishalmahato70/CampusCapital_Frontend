@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api/v1";
+import BASE_URL from "../utils/api";
 
 export default function CreditCardDetailPage() {
   const { cardId } = useParams(); // yeh URL se cardId lega
@@ -13,7 +13,7 @@ export default function CreditCardDetailPage() {
   useEffect(() => {
     const fetchCard = async () => {
       try {
-        const res = await fetch(`${API_URL}/credit-cards/${cardId}`);
+        const res = await fetch(`${BASE_URL}/credit-cards/${cardId}`);
         if (!res.ok) throw new Error("Card not found");
         const data = await res.json();
         setCard(data);
