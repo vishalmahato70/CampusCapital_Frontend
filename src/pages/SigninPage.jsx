@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api/v1";
+import BASE_URL from "../utils/api";
 
 export default function SigninPage() {
   const navigate = useNavigate();
@@ -40,7 +39,7 @@ export default function SigninPage() {
     if (v) return setErr(v);
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/auth/signin`, {
+      const res = await fetch(`${BASE_URL}/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.email.trim(), password: form.password }),
