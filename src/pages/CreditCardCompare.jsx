@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api/v1";
+import BASE_URL from "../utils/api";
 
 export default function CreditCardCompare() {
   const [searchParams] = useSearchParams();
@@ -24,7 +24,7 @@ export default function CreditCardCompare() {
     async function fetchCompareCards(idArray) {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/credit-cards/compare`, {
+        const response = await fetch(`${BASE_URL}/credit-cards/compare`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ids: idArray }),
