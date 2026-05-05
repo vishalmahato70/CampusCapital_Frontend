@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 // API URL (aapke SigninPage se liya gaya)
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api/v1";
+import BASE_URL from "../utils/api";
 
 export default function CreditCards() {
   // Data state management
@@ -25,7 +25,7 @@ export default function CreditCards() {
     async function fetchCards() {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/credit-cards`);
+        const response = await fetch(`${BASE_URL}/credit-cards`);
         if (!response.ok) {
           throw new Error('Failed to fetch credit cards');
         }
